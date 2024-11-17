@@ -1,0 +1,134 @@
+<div class="card-body">
+	<div class="tab-content">
+		<div class="tab-pane show active" id="basic">
+			<h5 class="info-text">Select the GPS and for the rule</h5>
+			<div class="row justify-content-center">
+				<div class="col-sm-3">
+                    <img src="../assets/img/GpsRules.png" class="img-fluid rounded float-right rounded mx-auto d-block" id="wizardPicturePreview" title="" />
+                </div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label>GPS Name</label>	
+						<select
+							class="selectpicker dropdown wizard-select"
+							data-style="btn btn-info btn-round" name="gpsSelect"
+							ng-model="InstallGpsRuleController.gpsRule.gpsName"
+							data-dropup-auto="false" data-max-options="1"
+							title="Select" data-header="Select a gps"
+							data-size="7">
+							<option
+								ng-repeat="gps in InstallGpsRuleController.gpses"
+								ng-value="gps.getName()">{{gps.getName()}}</option>
+								<option style="display:none" value=""></option>
+						</select>
+					</div>
+				</div>
+			</div>		
+		</div>
+		<div class="tab-pane" id="type">
+			<h5 class="info-text">&#191;What kind of gps rule do you want to install?</h5>
+			<div class="row justify-content-center">
+				<div class="col-lg-10">
+					<div class="row">
+						<div class="col-sm form-group"
+							ng-repeat="gpsRuleType in InstallGpsRuleController.rulesCapabilities.getSupportedGpsRulesTypes()">
+							<div class="choice" data-toggle="wizard-radio" name="gpsRuleTypeSelect" ng-click="InstallGpsRuleController.setGpsRuleType(gpsRuleType)"
+							ng-class="{active : gpsRuleType === InstallGpsRuleController.gpsRule.gpsRuleType}">
+								<input type="radio" ng-value="gpsRuleType" >
+								<div class="icon">
+									<i class="nc-icon nc-{{gpsRuleType.split(' ').join('-') | lowercase}}"></i>
+								</div>
+								<h6>{{gpsRuleType}}</h6>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane" id="config">
+			<div class="row justify-content-center">
+				<div class="col-sm-12">
+					<h5 class="info-text">Set the latitude, longitude and range to receive notifications when GPS coordinates are out of range</h5>
+				</div>
+				<div class="row col-sm-12 justify-content-center">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label>Gps</label> <input type="text" 
+								class="form-control"  ng-value="InstallGpsRuleController.gpsRule.gpsName" disabled>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label>Rule type</label> <input type="text"
+								class="form-control"  ng-value="InstallGpsRuleController.gpsRule.gpsRuleType" disabled>
+						</div>
+					</div>
+				</div>
+				<div class="big-spacer"></div>
+				<div class="row col-sm-12">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<div>
+								<label>Latitude</label>
+								<input type="number" step="0.000001" min=-90 max=90 class="form-control" required="true" ng-model="InstallGpsRuleController.installOutOfRangeGpsRuleController.latitude">				 							
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<div>
+								<label>Longitude</label>
+								<input type="number" step="0.000001" min=-180 max=180 class="form-control" required="true" ng-model="InstallGpsRuleController.installOutOfRangeGpsRuleController.longitude">				 							
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<div>
+								<label>Range (m)</label>
+								<input type="number" step="1" min=1 max=1000000 class="form-control" required="true" ng-model="InstallGpsRuleController.installOutOfRangeGpsRuleController.range">				 							
+							</div>
+						</div>
+					</div>				
+				</div>
+				<div class="big-spacer"></div>
+				<div class="row col-sm-12">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<div>
+								<label>Minimum time between triggers</label> 
+							</div>
+							<select class="selectpicker dropdown wizard-select" data-style="btn btn-info btn-round" name="timeBetweenTriggersSelect"
+							ng-model="InstallGpsRuleController.gpsRule.timeBetweenTriggers"
+							data-dropup-auto="false" data-max-options="1" 
+							title="Select" data-header="Select minimum time between triggers"
+							data-size="12">
+								<option
+									ng-repeat="timeBetweenTriggersOption in InstallGpsRuleController.rulesCapabilities.getSupportedRulesTimeBetweenTriggers()"
+									ng-value="timeBetweenTriggersOption">{{timeBetweenTriggersOption}}</option>
+								<option style="display:none" value=""></option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<div>
+								<label>Notifications type</label> 
+							</div>
+							<select class="selectpicker dropdown wizard-select" data-style="btn btn-info btn-round" name="notificationTypeSelect"
+							ng-model="InstallGpsRuleController.gpsRule.notificationType"
+							data-dropup-auto="false" data-max-options="1" 
+							title="Select" data-header="Select notification type"
+							data-size="12">
+								<option
+									ng-repeat="notificationTypeOption in InstallGpsRuleController.supportedNotificationsTypes"
+									ng-value="notificationTypeOption">{{notificationTypeOption}}</option>
+								<option style="display:none" value=""></option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

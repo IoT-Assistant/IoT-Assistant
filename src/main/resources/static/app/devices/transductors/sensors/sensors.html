@@ -1,0 +1,77 @@
+
+
+<div class="row">
+	<div ng-if="!GetSensorsController.sensors.length"
+		class="col-md-12">
+		<h3 class="description">No available sensors</h3>
+	</div>
+</div>
+
+
+
+<div class="row">
+	<div class="col-lg-3 col-md-6 col-sm-6"
+		ng-repeat="sensor in GetSensorsController.sensors track by sensor.getName()">
+		<div class="card card-stats">
+			<div class="card-header" style="float: right;">
+				<h5 class="card-title ctooltip">{{sensor.getName()}}	
+					<i class="nc-icon nc-simple-remove remove-device-icon" ng-click="GetSensorsController.deleteSensor(sensor.getName())"/></i>	
+					<span class="ctooltiptext">{{sensor.getDescription()}} </span>			
+				</h5>
+			</div>	
+			<div class="card-body ">
+				<div class="row" ng-repeat="propertyMeasured in sensor.getProperties()">
+					<div class="col-5 col-md-4">
+						<div class="icon-big text-center icon-warning">
+							<i
+								class="nc-icon nc-{{propertyMeasured.getName() | lowercase}}"></i>
+						</div>
+					</div>
+					<div class="col-7 col-md-8">
+						<div class="numbers">
+							<p class="card-category">{{propertyMeasured.getName()}}</p>						
+							<div ng-switch="sensor.isActive()">
+								<p ng-switch-when="false" class="card-title device-inactive">Unknown</p>
+								<div ng-switch-when="true">
+									<p data-alias="sensor.getValue(propertyMeasured.getNameWithUnit()) as sensorValue">		
+										<div ng-if="!propertyMeasured.isBinary()">
+											<p class="card-title ">
+												<span class="value-string">{{sensorValue.getString()}}</span> 
+												<span class="value-unit">{{sensorValue.getUnit()}}</span> 
+											</p>
+											<p ng-if="sensorValue.hasDescription()" class="card-title value-description"><span class="value-severity-{{sensorValue.getSeverity()}}"> {{sensorValue.getDescription()}} </span></p>
+										</div>
+										<p ng-if="propertyMeasured.isBinary()" class="card-title">
+											<button ng-if="sensorValue.isHigh()" class="btn btn-warning" disabled>Active</button>
+											<button ng-if="!sensorValue.isHigh()" class="btn" disabled>Inactive</button>
+										</p>									
+								</div>
+							</div>	
+							<p></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card-footer ">
+				<hr>
+				<div class="stats"  >
+					<span ng-if="sensor.isActive()">
+						<i class="fa fa-clock-o values-date"></i>	
+                   		{{sensor.getValuesTime()}}
+                   	</span>
+                   	<span class="watchdog-icon ctooltip" ng-if="sensor.hasWatchdog()" ng-switch="sensor.isWatchdogEnabled()">
+						<span class="ctooltiptext">{{sensor.isWatchdogEnabled() ? 'Disable' : 'Enable'}} {{sensor.getWatchdogInterval()}} watchdog </span>
+						<button ng-switch-when="true" class="watchdog-enabled fa fa-eye"  ng-click="GetSensorsController.enableWatchdog(false, sensor.getName())" ></button>
+						<button ng-switch-when="false" class="watchdog-disabled fa fa-eye-slash" ng-click="GetSensorsController.enableWatchdog(true, sensor.getName())"></button>		
+					</span>	
+					
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+
+</script>

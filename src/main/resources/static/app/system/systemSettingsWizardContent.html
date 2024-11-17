@@ -1,0 +1,195 @@
+<div class="card-body">
+	<div class="tab-content">
+		<div class="tab-pane show active" id="security">
+			<h5 class="info-text">Let's start with the Login information</h5>
+			<div class="row justify-content-center">
+				<div class="col-sm-3">
+                    <img src="../assets/img/login.png" class="img-fluid wz rounded float-left rounded mx-auto d-block" id="wizardPicturePreview" title="" />
+                </div>
+				<div class="col-sm-6">
+					<div class="form-group">					
+						<label>Username</label>
+						<input type="text" class="form-control" ng-value="SetSystemSettingsController.settings.security.username" name="usernameInput" disabled>
+					</div>
+					<div class="form-group">     
+						<label>Password</label>                    
+                        <input type="password" ng-model="SetSystemSettingsController.settings.security.password" class="form-control" name="passwordInput" />
+                    </div>
+                    <div class="form-group">     
+						<label>Repeat the password</label>                    
+                        <input type="password" class="form-control" name="repeatPasswordInput" />
+                    </div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane" id="mqtt">
+			<h5 class="info-text">What are your MQTT settings?</h5>
+			<div class="row justify-content-center">
+				<div class="col-sm-3">
+                    <img src="../assets/img/mqtt.png" class="img-fluid wz rounded float-left rounded mx-auto d-block" id="wizardPicturePreview" title="" />
+                </div>
+				<div class="col-sm-6">
+					<div class="form-group">					
+						<label>Broker (e.g tcp://broker.hivemq.com:1883)</label>
+						<input type="text" class="form-control" ng-model="SetSystemSettingsController.settings.mqtt.broker" name="mqttBrokerInput">
+					</div>
+					<div class="form-group">     
+						<label>Client Id</label>                    
+                        <input type="text" ng-model="SetSystemSettingsController.settings.mqtt.clientId" class="form-control" name="mqttClientIdInput" />
+                    	<input type="button" class="btn btn-primary btn-sm" value="Generate" ng-click="SetSystemSettingsController.generateMqttClientId()">
+                    </div>
+                    <div class="form-group">     
+						<label>Username</label>                    
+                        <input type="text" ng-model="SetSystemSettingsController.settings.mqtt.username" class="form-control" name="mqttUsernameInput" />
+                    </div>
+                    <div class="form-group">     
+						<label>Password</label>                    
+                        <input type="text" ng-model="SetSystemSettingsController.settings.mqtt.password" class="form-control" name="mqttPasswordInput" />
+                    </div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane" id="ttn">
+			<h5 class="info-text">What are your The Things Network settings?</h5>
+			<div class="row justify-content-center">
+				<div class="col-sm-3">
+                    <img src="../assets/img/ttn.png" class="img-fluid wz rounded float-left rounded mx-auto d-block" id="wizardPicturePreview" title="" />
+                </div>
+				<div class="col-sm-6">
+					<div class="form-group">					
+						<label>Broker (e.g ssl://eu1.cloud.thethings.network:8883)</label>
+						<input type="text" class="form-control" ng-model="SetSystemSettingsController.settings.ttn.broker" name="ttnBrokerInput">
+					</div>
+					<div class="form-group">     
+						<label>Client Id</label>                    
+                        <input type="text" ng-model="SetSystemSettingsController.settings.ttn.clientId" class="form-control" name="ttnClientIdInput" />
+                        <input type="button" class="btn btn-primary btn-sm" value="Generate" ng-click="SetSystemSettingsController.generateTTNClientId()">
+                    </div>
+                    <div class="form-group">     
+						<label>Username</label>                    
+                        <input type="text" ng-model="SetSystemSettingsController.settings.ttn.username" class="form-control" name="ttnUsernameInput" />
+                    </div>
+                    <div class="form-group">     
+						<label>Password</label>                    
+                        <input type="text" ng-model="SetSystemSettingsController.settings.ttn.password" class="form-control" name="ttnPasswordInput" />
+                    </div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane" id="telegram">
+			<h5 class="info-text">Set your Telegram Bot information</h5>
+			<div class="row justify-content-center">
+				<div class="col-sm-3">
+                    <img src="../assets/img/telegram.png" class="img-fluid wz rounded float-left rounded mx-auto d-block" id="wizardPicturePreview" title="" />
+                </div>
+				<div class="col-sm-6">
+					<div class="form-group">					
+						<label>Bot token</label>
+						<input type="text" class="form-control" ng-model="SetSystemSettingsController.settings.telegram.token" name="telegramTokenInput">
+					</div>
+					<div class="form-group">     
+						<label>Bot chat Id</label>                    
+                        <input type="text" ng-model="SetSystemSettingsController.settings.telegram.chatId" class="form-control" name="telegramIdInput" />
+                    </div>
+                    <div class="form-group">     
+						<label>Bot username</label>                    
+                        <input type="text" ng-model="SetSystemSettingsController.settings.telegram.username" class="form-control" name="telegramUsernameInput" />
+                    </div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane" id="summary">
+			<div class="row justify-content-center">
+				<div class="col-sm-12">
+					<h5 class="info-text">Settings</h5>
+				</div>
+				<div class="row col-sm-12 justify-content-left">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label>Login Username</label> <input type="text" 
+								class="form-control"  ng-value="SetSystemSettingsController.settings.security.username" disabled>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label>Login Password</label> <input type="password"
+								class="form-control"  ng-value="SetSystemSettingsController.settings.security.password" disabled>
+						</div>
+					</div>
+				</div>
+				<div class="row col-sm-12 justify-content-center">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label>Mqtt Broker</label> <input type="text" 
+								class="form-control"  ng-value="SetSystemSettingsController.settings.mqtt.broker" disabled>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label>Mqtt Client Id</label> <input type="text"
+								class="form-control"  ng-value="SetSystemSettingsController.settings.mqtt.clientId" disabled>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label>Mqtt Username</label> <input type="text"
+								class="form-control"  ng-value="SetSystemSettingsController.settings.mqtt.username" disabled>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label>Mqtt Password</label> <input type="text"
+								class="form-control"  ng-value="SetSystemSettingsController.settings.mqtt.password" disabled>
+						</div>
+					</div>
+				</div>
+				<div class="row col-sm-12 justify-content-center">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label>TTN Broker</label> <input type="text" 
+								class="form-control"  ng-value="SetSystemSettingsController.settings.ttn.broker" disabled>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label>TTN Client Id</label> <input type="text"
+								class="form-control"  ng-value="SetSystemSettingsController.settings.ttn.clientId" disabled>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label>TTN Username</label> <input type="text"
+								class="form-control"  ng-value="SetSystemSettingsController.settings.ttn.username" disabled>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label>TTN Password</label> <input type="text"
+								class="form-control"  ng-value="SetSystemSettingsController.settings.ttn.password" disabled>
+						</div>
+					</div>
+				</div>
+				<div class="row col-sm-12 justify-content-left">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label>Telegram Bot Token</label> <input type="text" 
+								class="form-control"  ng-value="SetSystemSettingsController.settings.telegram.token" disabled>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label>Telegram Chat Id</label> <input type="text"
+								class="form-control"  ng-value="SetSystemSettingsController.settings.telegram.chatId" disabled>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label>Telegram Username</label> <input type="text"
+								class="form-control"  ng-value="SetSystemSettingsController.settings.telegram.username" disabled>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

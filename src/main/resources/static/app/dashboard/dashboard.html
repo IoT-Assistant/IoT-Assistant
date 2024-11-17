@@ -1,0 +1,201 @@
+<!--
+=========================================================
+* Paper Dashboard 2 - v2.0.1
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/paper-dashboard-2
+* Copyright 2020 Creative Tim (https://www.creative-tim.com)
+
+Coded by www.creative-tim.com
+
+ =========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!doctype html>
+<html lang="en" ng-app="iotAssistant">
+
+	<head ng-include="'shared/head.html'">
+	</head>
+
+	<body class="">
+		<div class="wrapper ">
+			<div ng-include="'shared/sidebar.html'"></div>
+			<div class="main-panel" style="min-height: 100vh;">
+				<div ng-include="'shared/topbar.html'" include-replace></div>
+				<div class="content">
+				
+				<div id="loading-bar-container"></div>
+					<div data-ng-view> </div>
+				</div>
+				<div ng-include="'shared/footer.html'" include-replace></div>
+			</div>		
+		</div>
+			
+	    <!-- Libraries -->
+		<script src="/app/libraries/jquery.min.js"></script>
+		<script src="/app/libraries/popper.min.js"></script>
+		<script src="/app/libraries/bootstrap.min.js"></script>
+		<script src="/app/libraries/angular.min.js"></script>
+		<script src="/app/libraries/angular-route.js"></script>
+		<script src="/app/libraries/angular-resource.min.js"></script>
+		<script src="/app/libraries/paper-dashboard.min.js?v=2.1.1"></script>
+		<script src="/app/libraries/angular-animate.min.js"></script>
+		<script src='/app/libraries/loading-bar.min.js'></script>		
+		
+		<!--  Plugins -->
+		<script src="/app/libraries/plugins/chartjs.min.js"></script>
+		<script src="/app/libraries/plugins/perfect-scrollbar.jquery.min.js"></script>
+	  	<script src="/app/libraries/plugins/jquery.bootstrap-wizard.js"></script>
+		<script src="/app/libraries/plugins/jquery.validate.min.js"></script>
+		<script src="/app/libraries/plugins/bootstrap-selectpicker.js"></script>
+		<script src="/app/libraries/plugins/sweetalert2.min.js"></script>
+		<script src="/app/libraries/plugins/wizard.js"></script>
+
+		
+		<!-- Application module config (SPA routes, dependencies injection) -->
+		<script type="text/javascript" src="/app/app.js"></script>
+		<script type="text/javascript" src="/app/routes.js"></script>
+		<script type="text/javascript" src="/app/loaderbar.js"></script>
+		
+		<!-- Directives -->
+		<script type="text/javascript" src="/app/directives/directives.js"></script>
+		
+		<!-- Charts -->
+		<script type="text/javascript" src="/app/charts/charts.js"></script>
+		<script type="text/javascript" src="/app/charts/controllers/GetChartsController.js"></script>
+		<script type="text/javascript" src="/app/charts/controllers/InstallChartController.js"></script>
+		<script type="text/javascript" src="/app/charts/services/ChartAPIService.js"></script>
+		<script type="text/javascript" src="/app/charts/entities/SensorChart.js"></script>
+		<script type="text/javascript" src="/app/charts/entities/SensorChartSample.js"></script>
+		<script type="text/javascript" src="/app/charts/entities/ChartCapabilities.js"></script>
+		
+		<!-- Devices -->
+		<script type="text/javascript" src="/app/devices/devices.js"></script>
+		<script type="text/javascript" src="/app/devices/entities/Device.js"></script>
+		<script type="text/javascript" src="/app/devices/entities/DevicesCapabilities.js"></script>
+		<script type="text/javascript" src="/app/devices/entities/DeviceCapabilities.js"></script>
+		
+		<!-- Cameras -->
+		<script type="text/javascript" src="/app/devices/cameras/cameras.js"></script>
+		<script type="text/javascript" src="/app/devices/cameras/controllers/GetCamerasController.js"></script>
+		<script type="text/javascript" src="/app/devices/cameras/controllers/InstallCameraController.js"></script>
+		<script type="text/javascript" src="/app/devices/cameras/services/CameraAPIService.js"></script>
+		<script type="text/javascript" src="/app/devices/cameras/entities/HttpCamera.js"></script>
+		<script type="text/javascript" src="/app/devices/cameras/entities/Camera.js"></script>
+		<script type="text/javascript" src="/app/devices/cameras/entities/CameraCapabilities.js"></script>
+		
+		<!-- Transductors -->
+		<script type="text/javascript" src="/app/devices/transductors/transductors.js"></script>
+		<script type="text/javascript" src="/app/devices/transductors/controllers/InstallTransductorController.js"></script>
+		<script type="text/javascript" src="/app/devices/transductors/entities/Transductor.js"></script>
+		<script type="text/javascript" src="/app/devices/transductors/entities/TransductorValue.js"></script>
+		<script type="text/javascript" src="/app/devices/transductors/entities/TransductorCapabilities.js"></script>
+		<script type="text/javascript" src="/app/devices/transductors/entities/NewTransductor.js"></script>
+		<script type="text/javascript" src="/app/devices/transductors/entities/Property.js"></script>
+		<script type="text/javascript" src="/app/devices/transductors/entities/TransductorValues.js"></script>
+		<script type="text/javascript" src="/app/devices/transductors/mappers/PropertyMapper.js"></script>
+		<script type="text/javascript" src="/app/devices/transductors/sensors/sensors.js"></script>		
+		<script type="text/javascript" src="/app/devices/transductors/sensors/controllers/GetSensorsController.js"></script>
+		<script type="text/javascript" src="/app/devices/transductors/sensors/controllers/InstallSensorController.js"></script>
+		<script type="text/javascript" src="/app/devices/transductors/sensors/services/SensorAPIService.js"></script>
+		<script type="text/javascript" src="/app/devices/transductors/sensors/entities/Sensor.js"></script>
+		<script type="text/javascript" src="/app/devices/transductors/sensors/entities/SensorValues.js"></script>
+		<script type="text/javascript" src="/app/devices/transductors/sensors/entities/SensorValue.js"></script>
+		<script type="text/javascript" src="/app/devices/transductors/actuators/actuators.js"></script>
+		<script type="text/javascript" src="/app/devices/transductors/actuators/controllers/GetActuatorsController.js"></script>
+		<script type="text/javascript" src="/app/devices/transductors/actuators/controllers/InstallActuatorController.js"></script>
+		<script type="text/javascript" src="/app/devices/transductors/actuators/services/ActuatorAPIService.js"></script>
+		<script type="text/javascript" src="/app/devices/transductors/actuators/entities/Actuator.js"></script>
+		<script type="text/javascript" src="/app/devices/transductors/actuators/entities/ActuatorValues.js"></script>
+		<script type="text/javascript" src="/app/devices/transductors/actuators/entities/ActuatorValue.js"></script>
+
+		<!-- GPS -->
+		<script type="text/javascript" src="/app/devices/gpses/gpses.js"></script>
+		<script type="text/javascript" src="/app/devices/gpses/controllers/GetGpsesController.js"></script>
+		<script type="text/javascript" src="/app/devices/gpses/controllers/InstallGpsController.js"></script>
+		<script type="text/javascript" src="/app/devices/gpses/services/GpsAPIService.js"></script>
+		<script type="text/javascript" src="/app/devices/gpses/entities/NewGps.js"></script>
+		<script type="text/javascript" src="/app/devices/gpses/entities/Gps.js"></script>
+		<script type="text/javascript" src="/app/devices/gpses/entities/GpsPosition.js"></script>
+		<script type="text/javascript" src="/app/devices/gpses/entities/GpsCapabilities.js"></script>
+		
+
+		<!-- Notifications -->
+		<script type="text/javascript" src="/app/notifications/notifications.js"></script>		
+		<script type="text/javascript" src="/app/notifications/controllers/GetNotificationsController.js"></script>
+		<script type="text/javascript" src="/app/notifications/services/NotificationAPIService.js"></script>
+		<script type="text/javascript" src="/app/notifications/mappers/NotificationsMapper.js"></script>
+		<script type="text/javascript" src="/app/notifications/entities/Notifications.js"></script>
+		<script type="text/javascript" src="/app/notifications/entities/Notification.js"></script>
+		<script type="text/javascript" src="/app/notifications/entities/SensorRuleNotification.js"></script>			
+		<script type="text/javascript" src="/app/notifications/entities/SensorRuleAlarmNotification.js"></script>	
+		<script type="text/javascript" src="/app/notifications/entities/SensorRuleEnableRuleNotification.js"></script>
+		<script type="text/javascript" src="/app/notifications/entities/SensorRuleTriggerActuatorNotification.js"></script>	
+		<script type="text/javascript" src="/app/notifications/entities/OutOfRangeGpsRuleNotification.js"></script>						
+		<script type="text/javascript" src="/app/notifications/entities/DeviceOfflineNotification.js"></script>
+		<script type="text/javascript" src="/app/notifications/entities/SensorRuleCameraNotification.js"></script>
+		<script type="text/javascript" src="/app/notifications/entities/NotificationsCapabilities.js"></script>
+		
+		<!-- Rules -->
+		<script type="text/javascript" src="/app/rules/rules.js"></script>
+		<script type="text/javascript" src="/app/rules/entities/Rule.js"></script>
+		<script type="text/javascript" src="/app/rules/entities/RulesCapabilities.js"></script>
+		<script type="text/javascript" src="/app/rules/entities/Rules.js"></script>
+		<script type="text/javascript" src="/app/rules/controllers/GetRulesController.js"></script>
+		<script type="text/javascript" src="/app/rules/services/RuleAPIService.js"></script>
+		<script type="text/javascript" src="/app/rules/mappers/RuleMapper.js"></script>
+		<script type="text/javascript" src="/app/rules/mappers/RulesFacadeMapper.js"></script>
+		<script type="text/javascript" src="/app/rules/gpsrules/gpsrules.js"></script>
+		<script type="text/javascript" src="/app/rules/gpsrules/entities/GpsRules.js"></script>
+		<script type="text/javascript" src="/app/rules/gpsrules/entities/GpsRule.js"></script>
+		<script type="text/javascript" src="/app/rules/gpsrules/entities/OutOfRangeGpsRule.js"></script>
+		<script type="text/javascript" src="/app/rules/gpsrules/controllers/InstallGpsRuleController.js"></script>
+		<script type="text/javascript" src="/app/rules/gpsrules/controllers/InstallOutOfRangeGpsRuleController.js"></script>
+		<script type="text/javascript" src="/app/rules/gpsrules/mappers/GpsRuleMapper.js"></script>
+		<script type="text/javascript" src="/app/rules/gpsrules/mappers/OutOfRangeGpsRuleMapper.js"></script>
+		<script type="text/javascript" src="/app/rules/sensorrules/sensorrules.js"></script>
+		<script type="text/javascript" src="/app/rules/sensorrules/controllers/InstallSensorRuleController.js"></script>	
+		<script type="text/javascript" src="/app/rules/sensorrules/controllers/InstallAlarmSensorRuleController.js"></script>
+		<script type="text/javascript" src="/app/rules/sensorrules/controllers/InstallEnableRuleSensorRuleController.js"></script>
+		<script type="text/javascript" src="/app/rules/sensorrules/controllers/InstallTriggerActuatorSensorRuleController.js"></script>
+		<script type="text/javascript" src="/app/rules/sensorrules/controllers/InstallCameraSensorRuleController.js"></script>	
+		<script type="text/javascript" src="/app/rules/sensorrules/mappers/AlarmSensorRuleMapper.js"></script>
+		<script type="text/javascript" src="/app/rules/sensorrules/mappers/EnableSensorRuleMapper.js"></script>
+		<script type="text/javascript" src="/app/rules/sensorrules/mappers/TriggerActuatorSensorRuleMapper.js"></script>
+		<script type="text/javascript" src="/app/rules/sensorrules/mappers/CameraSensorRuleMapper.js"></script>
+		<script type="text/javascript" src="/app/rules/sensorrules/mappers/SensorRuleMapper.js"></script>
+		<script type="text/javascript" src="/app/rules/sensorrules/entities/SensorRules.js"></script>
+		<script type="text/javascript" src="/app/rules/sensorrules/entities/SensorRule.js"></script>
+		<script type="text/javascript" src="/app/rules/sensorrules/entities/CameraSensorRule.js"></script>
+		<script type="text/javascript" src="/app/rules/sensorrules/entities/AlarmSensorRule.js"></script>
+		<script type="text/javascript" src="/app/rules/sensorrules/entities/EnableRuleSensorRule.js"></script>
+		<script type="text/javascript" src="/app/rules/sensorrules/entities/TriggerActuatorSensorRule.js"></script>
+		<script type="text/javascript" src="/app/rules/sensorrules/entities/SensorMeasureThresholdSettings.js"></script>
+		<script type="text/javascript" src="/app/rules/sensorrules/entities/ActuatorSetValueSettings.js"></script>
+		
+		<!-- System -->
+		<script type="text/javascript" src="/app/system/system.js"></script>
+		<script type="text/javascript" src="/app/system/controllers/GetSystemInfoController.js"></script>
+		<script type="text/javascript" src="/app/system/controllers/SetSystemSettingsController.js"></script>
+		
+		<script type="text/javascript" src="/app/system/controllers/PowerOffSystemController.js"></script>
+		<script type="text/javascript" src="/app/system/services/SystemAPIService.js"></script>
+		<script type="text/javascript" src="/app/system/entities/System.js"></script>
+		<script type="text/javascript" src="/app/system/entities/SystemCapabilities.js"></script>
+		<script type="text/javascript" src="/app/system/entities/ServerStatus.js"></script>
+		<script type="text/javascript" src="/app/system/entities/SystemSettings.js"></script>
+		<script type="text/javascript" src="/app/system/entities/SecuritySettings.js"></script>
+		<script type="text/javascript" src="/app/system/entities/MqttSettings.js"></script>
+		<script type="text/javascript" src="/app/system/entities/TTNSettings.js"></script>
+		<script type="text/javascript" src="/app/system/entities/TelegramSettings.js"></script>
+		
+		<!-- Utils -->
+		<script type="text/javascript" src="/app/utils/utils.js"></script>
+		<script type="text/javascript" src="/app/utils/RestAPIService.js"></script>
+		<script type="text/javascript" src="/app/utils/RestLocationService.js"></script>
+		<script type="text/javascript" src="/app/utils/SweetAlertService.js"></script>
+		<script type="text/javascript" src="/app/utils/ChartsDrawService.js"></script>
+
+	</body>
+</html>

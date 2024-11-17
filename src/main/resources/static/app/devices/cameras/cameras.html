@@ -1,0 +1,42 @@
+
+
+<div class="row">
+	<div ng-if="!GetCamerasController.cameras.length"
+		class="col-md-12">
+		<h3 class="description">No available cameras</h3>
+	</div>
+</div>
+
+
+
+<div class="row">
+	<div class="col-lg-3 col-md-6 col-sm-6"
+		ng-repeat="camera in GetCamerasController.cameras track by camera.getName()">
+		<div class="card card-stats">
+			<div class="card-header ">
+				<h5 class="card-title ctooltip">{{camera.getName()}}
+					<i class="nc-icon nc-simple-remove remove-device-icon" ng-click="GetCamerasController.deleteCamera(camera.getName())"/></i>
+					<span class="ctooltiptext">{{camera.getDescription()}} </span>
+				</h5>
+			</div>
+			<div class="card-body ">
+				<img ng-src={{camera.getPictureURL()}} alt="Error" onerror="this.src='/app/assets/img/CameraError.png'"/>
+			</div>
+			<div class="card-footer ">
+				<hr>
+				<div class="stats">
+					<span class="watchdog-icon ctooltip" ng-if="camera.hasWatchdog()" ng-switch="camera.isWatchdogEnabled()">
+					    <span class="ctooltiptext">{{camera.isWatchdogEnabled() ? 'Disable' : 'Enable'}} {{camera.getWatchdogInterval()}} watchdog </span>		
+					    <button ng-switch-when="true" class="watchdog-enabled fa fa-eye" ng-click="GetCamerasController.enableWatchdog(false, camera.getName())" ></button>
+					    <button ng-switch-when="false" class="watchdog-disabled fa fa-eye-slash" ng-click="GetCamerasController.enableWatchdog(true, camera.getName())"></button>		
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+

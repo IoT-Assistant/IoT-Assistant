@@ -1,0 +1,79 @@
+<div class="row">
+	<div ng-if="!GetActuatorsController.actuators.length" class="col-md-12">
+		<h3 class="description">No available actuators</h3>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-3 col-md-6 col-sm-6"
+		ng-repeat="actuator in GetActuatorsController.actuators track by actuator.getName()">
+		<div class="card card-stats">
+			<div class="card-header ">
+				<h5 class="card-title ctooltip">{{actuator.getName()}}
+					<i class="nc-icon nc-simple-remove remove-device-icon" 
+					ng-click="GetActuatorsController.deleteActuator(actuator.getName())"/></i>
+					<span class="ctooltiptext">{{actuator.getDescription()}} </span>
+				</h5>
+			</div>
+			<div class="card-body ">
+				<div class="row" ng-repeat="propertyActuated in actuator.getProperties() track by propertyActuated.getName()">
+					<div class="col-5 col-md-4">
+						<div class="icon-big text-center icon-warning">
+							<i class="nc-icon nc-{{propertyActuated.getName() | lowercase}}"></i>
+						</div>
+					</div>
+					<div class="col-7 col-md-8">
+						<div class="numbers">
+							<p class="card-category">{{propertyActuated.getName()}}</p>
+							<div ng-switch="actuator.isActive()">
+								<p ng-switch-when="false" class="card-title device-inactive">Unknown</p>
+								<div ng-switch-when="true">
+								<p data-alias="actuator.getValue(propertyActuated.getNameWithUnit()) as actuatorValue">
+									<p ng-if="!propertyActuated.isBinary()" class="card-title">
+										<span class="value-string">{{actuatorValue.getString()}}</span> 
+										<span class="value-unit">{{actuatorValue.getUnit()}}</span> 
+									<span>
+									<button class="btn" ng-click="GetActuatorsController.setActuatorAnalogValue(actuator, propertyActuated, actuatorValue)">
+                  						Set value
+                  						<span class="btn-label btn-label-right">
+                    					<i class="nc-icon nc-minimal-right"></i>                					
+                  						</span>
+                					</button>
+                					<input type="number" id="{{ 'newValue-' + actuator.getName() + '-' + propertyActuated.getNameWithUnit()}}"
+                					value='{{propertyActuated.getMinimumValue()}}' required="true"
+                					min='{{propertyActuated.getMinimumValue()}}' max='{{propertyActuated.getMaximumValue()}}'>  
+									</span>
+									</p>
+									
+									<p ng-if="propertyActuated.isBinary()" class="card-title">
+										<label class="switch"> 
+											<input type="checkbox"  ng-model="actuatorValue.string" 
+											ng-true-value="'true'" ng-false-value="'false'"
+											ng-click="GetActuatorsController.setActuatorBinaryValue(actuator, propertyActuated)"> 
+											<span></span>
+										</label>
+									</p>
+									<p></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card-footer ">
+				<hr>
+				<div class="stats">
+					<span ng-if="actuator.isActive()">
+						<i class="fa fa-clock-o values-date"></i>
+						{{actuator.getValuesTime()}}	
+					</span> 
+					<span class="watchdog-icon ctooltip" ng-if="actuator.hasWatchdog()" ng-switch="actuator.isWatchdogEnabled()">
+					    <span class="ctooltiptext">{{actuator.isWatchdogEnabled() ? 'Disable' : 'Enable'}} {{actuator.getWatchdogInterval()}} watchdog </span>
+					    <button ng-switch-when="true" class="watchdog-enabled fa fa-eye" ng-click="GetActuatorsController.enableWatchdog(false, actuator.getName())" ></button>
+					    <button ng-switch-when="false" class="watchdog-disabled fa fa-eye-slash" ng-click="GetActuatorsController.enableWatchdog(true, actuator.getName())"></button>		
+					</span> 
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
