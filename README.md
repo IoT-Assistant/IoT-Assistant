@@ -1,4 +1,4 @@
-# [![IoT Assistant](https://iot-assistant.github.io/images/favicon.png)](https://iot-assistant.github.io) IoT Assistant
+# <img src="https://iot-assistant.github.io/images/favicon.png" width="30" height="30" /> IoT Assistant
 
 Open source application designed for quick and easy management of programmable IoT devices
 
